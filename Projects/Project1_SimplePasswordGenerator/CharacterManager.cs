@@ -48,14 +48,24 @@ namespace PasswordCreator.Console
 
         public string GetRandomPassword(int PasswordLength)
         {
-            var password = new char[PasswordLength];
+            var password = "";
             for (int i = 0; i < PasswordLength; i++)
             {
-                password[i] = Convert.ToChar(GetRandomCharacter());
+                password += Convert.ToString(GetRandomCharacter());
             }
-            string GeneratedPassword = string.Join("", password);
-
-            return GeneratedPassword;
+            return password;
         }
+
+        //public string GetRandomPassword(int PasswordLength)
+        //{
+        //    var password = new char[PasswordLength];
+        //    for (int i = 0; i < PasswordLength; i++)
+        //    {
+        //        password[i] = Convert.ToChar(GetRandomCharacter());
+        //    }
+        //    string GeneratedPassword = string.Join("", password);
+
+        //    return GeneratedPassword;
+        //}
     }
 }
