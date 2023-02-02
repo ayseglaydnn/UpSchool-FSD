@@ -38,6 +38,8 @@ CharacterList = characterManager.AddList(includeLowerCharStatus, LowerChars);
 CharacterList = characterManager.AddList(includeUpperCharStatus, UpperChars);
 CharacterList = characterManager.AddList(includeSpecialCharStatus, SpecialChar);
 
-Console.WriteLine(characterManager.GetRandomPassword(IntPasswordLength));
-
+if(includeNumberStatus == "y" || includeLowerCharStatus == "y" || includeUpperCharStatus == "y" || includeSpecialCharStatus =="y")
+    Console.WriteLine(characterManager.GetRandomPassword(IntPasswordLength));
+else
+    Console.WriteLine("There is not any characters available");
 

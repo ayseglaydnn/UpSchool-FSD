@@ -19,7 +19,7 @@ namespace PasswordCreator.Console
             _random = new Random();
             SelectedCharacters = new List<Character>();
         }
-
+        
         public List<Character> AddList(string includeStatus, string includeType)
         {
 
