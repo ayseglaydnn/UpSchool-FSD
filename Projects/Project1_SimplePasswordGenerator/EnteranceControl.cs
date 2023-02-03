@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace PasswordCreator.Console
 {
     public class EnteranceControl
-    {
+    {       
         public bool IsDigit(string passwordLength)
         {
             try

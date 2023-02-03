@@ -22,7 +22,6 @@ namespace PasswordCreator.Console
         
         public List<Character> AddList(string includeStatus, string includeType)
         {
-
             if (includeStatus == "y" || includeStatus == "Y")
             {
                 foreach (var x in includeType)
