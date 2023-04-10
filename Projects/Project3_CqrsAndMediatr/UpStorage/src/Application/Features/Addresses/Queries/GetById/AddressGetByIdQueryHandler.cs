@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Application.Features.Addresses.Queries.GetAll;
 using Domain.Entities;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Addresses.Queries.GetById
 {
-    public class AddressGetByIdQueryHandler
+    public class AddressGetByIdQueryHandler : IRequestHandler<AddressGetByIdQuery, List<AddressGetByIdDto>>
     {
         private readonly IApplicationDbContext _applicationDbContext;
         public AddressGetByIdQueryHandler(IApplicationDbContext applicationDbContext)

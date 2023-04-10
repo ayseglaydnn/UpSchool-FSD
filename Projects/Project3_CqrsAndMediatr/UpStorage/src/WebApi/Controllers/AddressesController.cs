@@ -30,7 +30,7 @@ namespace WebApi.Controllers
             return Ok(await Mediator.Send(new AddressGetByIdQuery(id, null)));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("Update {id}")]
         public async Task<IActionResult> UpdateAsync(AddressUpdateCommand command, Guid id)
         {
             if(id != command.Id)
@@ -41,7 +41,7 @@ namespace WebApi.Controllers
             return Ok(await Mediator.Send(command));
         }
 
-        [HttpPut("Delete {id}")]
+        [HttpDelete("Delete {id}")]
         public async Task<IActionResult> DeleteAsync(AddressUpdateCommand command, Guid id)
         {
             if (id != command.Id)

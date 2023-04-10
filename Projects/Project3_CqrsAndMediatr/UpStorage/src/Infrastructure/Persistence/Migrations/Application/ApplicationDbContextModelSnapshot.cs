@@ -109,10 +109,12 @@ namespace Infrastructure.Persistence.Migrations.Application
 
                     b.Property<string>("AddressLine1")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
 
                     b.Property<string>("AddressLine2")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
 
                     b.Property<int>("AddressType")
                         .HasColumnType("int");
@@ -139,7 +141,8 @@ namespace Infrastructure.Persistence.Migrations.Application
 
                     b.Property<string>("District")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -155,11 +158,13 @@ namespace Infrastructure.Persistence.Migrations.Application
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("PostCode")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -172,6 +177,8 @@ namespace Infrastructure.Persistence.Migrations.Application
                     b.HasIndex("CountryId");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("Name");
 
                     b.ToTable("Addresses", (string)null);
                 });
@@ -387,7 +394,6 @@ namespace Infrastructure.Persistence.Migrations.Application
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
