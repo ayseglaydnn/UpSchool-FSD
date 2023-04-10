@@ -10,6 +10,10 @@ namespace Application.Features.Addresses.Commands.Delete
 {
     public class AddressDeleteCommand : IRequest<Response<Guid>>
     {
+        public AddressDeleteCommand(Guid id)
+        {
+            Id = id;
+        }
 
         public Guid Id { get; set; }
         public string Name { get; set; }

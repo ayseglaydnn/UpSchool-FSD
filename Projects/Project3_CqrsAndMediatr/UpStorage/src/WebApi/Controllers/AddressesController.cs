@@ -42,14 +42,9 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("Delete {id}")]
-        public async Task<IActionResult> DeleteAsync(AddressUpdateCommand command, Guid id)
+        public async Task<IActionResult> DeleteAsync(Guid id)
         {
-            if (id != command.Id)
-            {
-                return BadRequest();
-            }
-
-            return Ok(await Mediator.Send(command));
+            return Ok(await Mediator.Send(new AddressDeleteCommand(id)));
         }
         
         [HttpDelete("HardDelete {id}")]

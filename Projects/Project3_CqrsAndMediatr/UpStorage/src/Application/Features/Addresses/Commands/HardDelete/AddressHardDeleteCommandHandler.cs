@@ -1,5 +1,7 @@
 ﻿using Application.Common.Interfaces;
+using Application.Features.Addresses.Commands.Delete;
 using Domain.Common;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Addresses.Commands.HardDelete
 {
-    public class AddressHardDeleteCommandHandler
+    public class AddressHardDeleteCommandHandler : IRequestHandler<AddressHardDeleteCommand, Response<Guid>>
     {
         private readonly IApplicationDbContext _applicationDbContext;
         public AddressHardDeleteCommandHandler(IApplicationDbContext applicationDbContext)

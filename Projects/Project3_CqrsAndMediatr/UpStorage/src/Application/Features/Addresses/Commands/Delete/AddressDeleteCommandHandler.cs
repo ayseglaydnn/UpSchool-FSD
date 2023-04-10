@@ -27,21 +27,13 @@ namespace Application.Features.Addresses.Commands.Delete
                 throw new ArgumentException(nameof(request.Id));
             }
 
-            address.Name = request.Name;
-            address.UserId = request.UserId;
-            address.CountryId = request.CountryId;
-            address.CityId = request.CityId;
-            address.District = request.District;
-            address.PostCode = request.PostCode;
-            address.AddressLine1 = request.AddressLine1;
-            address.AddressLine2 = request.AddressLine2;
             address.DeletedOn = DateTimeOffset.Now;
             address.DeletedByUserId = null;
             address.IsDeleted = true;
 
             await _applicationDbContext.SaveChangesAsync(cancellationToken);
 
-            return new Response<Guid>($"The address named \"{address.Name}\" was marked as deleted.", address.Id);
+            return new Response<Guid>($"The address named \"{address.Name}\" was marked as deleted.(isDeleted = {address.IsDeleted} )", address.Id);
         }
     }
 }
