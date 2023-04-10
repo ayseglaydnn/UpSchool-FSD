@@ -1,6 +1,6 @@
-<h3>CQRS ve MediatR</h3>
+<h3>DB Konfgürasyonları, CQRS ve MediatR</h3>
 
-<p>Uygulamanın bu kısmında;
+<p>Uygulamanın bu kısmında;<br>
 <b>1-</b> “Address”, “Note”, “NoteCategory” entity'lerinin database konfigürasyonları gerçekleştirilmiştir.<br>
 <b>2-</b> User identity'si için birden fazla Address entity'sine sahip olabilecek şekilde bire-çok(one-to-many) ilişkisi verilmiştir.<br>
 <b>3-</b> Note ile Category entity'leri arasında çoka-çok(many-to-many) ilişkisi verilmiştir. Yani bir not birden fazla kategoriye ve bir kategori birden fazla nota sahip olabilir.<br>
