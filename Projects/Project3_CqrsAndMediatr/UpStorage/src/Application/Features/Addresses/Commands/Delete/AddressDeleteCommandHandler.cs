@@ -1,26 +1,23 @@
 ﻿using Application.Common.Interfaces;
-using Application.Features.Addresses.Commands.Add;
+using Application.Features.Addresses.Commands.Update;
 using Domain.Common;
-using Domain.Entities;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Addresses.Commands.Update
+namespace Application.Features.Addresses.Commands.Delete
 {
-    public class AddressUpdateCommandHandler : IRequestHandler<AddressUpdateCommand,Response<Guid>>
+    public class AddressDeleteCommandHandler : IRequestHandler<AddressDeleteCommand, Response<Guid>>
     {
         private readonly IApplicationDbContext _applicationDbContext;
-
-        public AddressUpdateCommandHandler(IApplicationDbContext applicationDbContext)
+        public AddressDeleteCommandHandler(IApplicationDbContext applicationDbContext)
         {
             _applicationDbContext = applicationDbContext;
         }
-        public async Task<Response<Guid>> Handle(AddressUpdateCommand request, CancellationToken cancellationToken)
+        public async Task<Response<Guid>> Handle(AddressDeleteCommand request, CancellationToken cancellationToken)
         {
             var address = await _applicationDbContext.Addresses
                 .FindAsync(new object[] { request.Id }, cancellationToken);
@@ -38,15 +35,13 @@ namespace Application.Features.Addresses.Commands.Update
             address.PostCode = request.PostCode;
             address.AddressLine1 = request.AddressLine1;
             address.AddressLine2 = request.AddressLine2;
-            address.ModifiedOn = DateTimeOffset.Now;
-            address.ModifiedByUserId = null;
-            address.IsDeleted = false;
-            
+            address.DeletedOn = DateTimeOffset.Now;
+            address.DeletedByUserId = null;
+            address.IsDeleted = true;
+
             await _applicationDbContext.SaveChangesAsync(cancellationToken);
 
-            return new Response<Guid>($"The address with \"{address.Id}\" id was successfully updated.", address.Id);
+            return new Response<Guid>($"The address named \"{address.Name}\" was marked as deleted.", address.Id);
         }
-
-        
     }
 }

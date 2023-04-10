@@ -15,9 +15,4 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Addresses\Commands\Delete\" />
-    <Folder Include="Features\Addresses\Commands\HardDelete\" />
-  </ItemGroup>
-
 </Project>
