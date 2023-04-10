@@ -2,6 +2,7 @@
 using Domain.Common;
 using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,21 @@ namespace Application.Features.Addresses.Commands.Add
         }
         public async Task<Response<Guid>> Handle(AddressAddCommand request, CancellationToken cancellationToken)
         {
+            if (!await _applicationDbContext.Countries.AnyAsync(x => x.Id == request.CountryId, cancellationToken))
+            {
+                throw new ArgumentException(nameof(request.CountryId));
+            }
+
+            if (!await _applicationDbContext.Cities.AnyAsync(x => x.Id == request.CityId, cancellationToken))
+            {
+                throw new ArgumentException(nameof(request.CityId));
+            }
+
+            if (await _applicationDbContext.Addresses.AnyAsync(x => x.Name.ToLower() == request.Name.ToLower(), cancellationToken))
+            {
+                throw new ArgumentException(nameof(request.Name));
+            }
+
             var address = new Address()
             {
                 Name = request.Name,
