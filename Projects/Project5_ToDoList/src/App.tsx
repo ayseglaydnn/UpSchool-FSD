@@ -85,7 +85,7 @@ function App() {
     <>
       <div>
         <Input action={{...componentStyles.myInput, onClick:handleAddTodo, disabled: toDo.task.trim()===''}} 
-          placeHolder="New ToDo..." 
+          placeholder="New ToDo..." 
           value={toDo.task} 
           onChange={(e) => setToDo({...toDo, task:e.target.value})}/>
       </div>
