@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { Button, Card, Header, Icon, Input } from 'semantic-ui-react'
+import { Button, Card, Divider, Grid, Header, Icon, Input, Segment } from 'semantic-ui-react'
 
 export type toDoDto = {
   id:string,
@@ -83,24 +83,56 @@ function App() {
 
   return (
     <>
-      <div>
-        <Input action={{...componentStyles.myInput, onClick:handleAddTodo, disabled: toDo.task.trim()===''}} 
-          placeholder="New ToDo..." 
-          value={toDo.task} 
-          onChange={(e) => setToDo({...toDo, task:e.target.value})}/>
-      </div>
-      <br></br>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Header as='h2' textAlign="center" size="huge">
-          <Icon name='pencil' size="tiny" />
-          <Header.Content>ToDos</Header.Content>
-          <Icon
-            name={sortOrder === 'ascending' ? 'sort numeric ascending' : 'sort numeric descending'}
-            onClick={toggleSortOrder}
-            style={{ cursor: 'pointer', alignSelf: 'flex-end' }}
-          />
-        </Header>
-      </div>
+      <Segment textAlign='center'> 
+        <Grid columns={2} relaxed='very' stackable>
+          <Grid.Column width={13}>
+            <Input action={{...componentStyles.myInput, onClick:handleAddTodo, disabled: toDo.task.trim()===''}}
+              style={{ width: '100%' }} 
+              placeholder="New ToDo..." 
+              value={toDo.task} 
+              onChange={(e) => setToDo({...toDo, task:e.target.value})}/>
+          </Grid.Column>
+          <Grid.Column width={3} verticalAlign='middle'>
+            <Icon size ="big"
+                  name={sortOrder === 'ascending' ? 'sort numeric ascending' : 'sort numeric descending'}
+                  onClick={toggleSortOrder}
+                  style={{ cursor: 'pointer', alignSelf: 'flex-end' }}
+                />
+          </Grid.Column>
+        </Grid>
+      
+        <Divider horizontal>
+          <Header as='h2' textAlign="center" size="large">
+            <Icon name='pencil' size="tiny" />
+            <Header.Content>ToDos</Header.Content>  
+          </Header>
+        </Divider>
+      </Segment>
+            
+          
+
+          
+        
+
+        
+
+
+
+
+
+        {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Header as='h2' textAlign="center" size="huge">
+            <Icon name='pencil' size="tiny" />
+            <Header.Content>ToDos</Header.Content>
+            <Icon
+              name={sortOrder === 'ascending' ? 'sort numeric ascending' : 'sort numeric descending'}
+              onClick={toggleSortOrder}
+              style={{ cursor: 'pointer', alignSelf: 'flex-end' }}
+            />
+          </Header>
+        </div> */}
+      
+      
       <br></br>
       <div>
         <Card.Group style={{ width: '700px' }}>
